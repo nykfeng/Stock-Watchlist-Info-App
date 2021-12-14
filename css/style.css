@@ -1,0 +1,87 @@
+:root {
+  font-size: 62.5%;
+  font-family: "Nunito", sans-serif;
+
+  --primary-dark-color: #191a19;
+  --secondary-dark-color: #2e4c6d;
+  --main-color: #5584ac;
+  --green-price-color: #9ae66e;
+  --red-price-color: #e02401;
+  --primary-gray-color: #f7f7f7;
+  --secondary-gray-color: #a09e9e;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr auto;
+  max-height: 100vh;
+}
+
+/* 
+Header section ------------------
+*/
+
+header {
+  grid-column: 1 / -1;
+}
+
+.header-bar {
+  height: 10vh;
+  text-align: center;
+  color: #fff;
+  background-color: var(--main-color);
+}
+
+.header-text {
+  font-size: 6rem;
+}
+
+/* 
+Side bar watchlist section ------------------
+*/
+.watchlist-sidebar {
+  height: 100vh;
+  background-color: var(--primary-gray-color);
+}
+
+.list-item {
+  box-sizing: border-box;
+  margin: 10px auto;
+  width: 300px;
+  height: 80px;
+  background-color: var(--secondary-gray-color);
+
+  border-left: 8px solid var(--green-price-color);
+
+  border-radius: 10px;
+  /* border-color: var(--green-price-color); */
+}
+
+.information-sec {
+  padding: 1.5rem;
+}
+
+.add-to-list__submit {
+  font-size: 5.5rem;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  color: var(--secondary-dark-color);
+}
+
+/* 
+Side bar recently viewed section ------------------
+*/
+.recently-viewed-sidebar {
+  height: 100vh;
+  background-color: var(--primary-gray-color);
+}

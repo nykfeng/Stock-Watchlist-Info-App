@@ -5,15 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;700;900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search-bar.css">
+    <script src="script.js" type="module" defer></script>
+    <script src="js/Stock.js" type="module"></script>
+    <script src="js/StockWatchList.js" type="module"></script>
+    <script src="js/StockRecentlyViewedList.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/2155740522.js" crossorigin="anonymous"></script>
     <title>Stock Watchlist</title>
 </head>
 
 <body>
-    <header>Stock Watchlist & Information App</header>
-    <section class="watchlist-sec">
-        <div class="stock-watchlist--list">
+    <header class="header-bar">
+        <div class="header-text">Stock Watchlist & Information App</div>
+
+    </header>
+    <aside class="watchlist-sidebar">
+        <div class="stock-watchlist__list">
             <div class="list-item">
                 <span class="stock-watchlist--stock-ticker">AAPL</span>
                 <span class="stock-watchlist--latest-price"></span>
@@ -51,10 +66,28 @@
                 <span class="stock-watchlist--volume"></span>
             </div>
         </div>
-    </section>
+    </aside>
     <section class="information-sec">
+        <div class="search-bar"><input type="text" class="search-bar__input" aria-label="search"
+                placeholder="enter stock ticker ">
+            <button class="search-bar__submit" aria-label="submit search"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="add-to-list-button">
+            <button class="add-to-list__submit"><i class="far fa-plus-square"></i></button>
+        </div>
 
+        <div class="search-result"></div>
     </section>
+    <aside class="recently-viewed-sidebar">
+        <div class="recently-viewed__list">
+            <div class="list-item">
+                <span class="stock-watchlist--stock-ticker">AAPL</span>
+                <span class="stock-watchlist--latest-price"></span>
+                <span class="stock-watchlist--latest-changePercent"></span>
+                <span class="stock-watchlist--volume"></span>
+            </div>
+        </div>
+    </aside>
 </body>
 
 </html>
