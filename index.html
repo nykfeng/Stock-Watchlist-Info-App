@@ -20,10 +20,14 @@
     <!-- My own style sheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/search-bar.css">
+    <link rel="stylesheet" href="css/dialog.css">
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js" type="module" defer></script>
+    <script src="js/control.js" type="module" defer></script>
+    <script src="js/dialog.js" type="module" defer></script>
+    <script src="js/render.js" type="module" defer></script>
     <script src="js/Stock.js" type="module"></script>
     <script src="js/WatchListStock.js" type="module"></script>
     <script src="js/RecentlyViewedListStock.js" type="module"></script>
@@ -37,8 +41,16 @@
 
     </header>
     <aside class="watchlist-sidebar">
-        <div class="stock-watchlist__header"><span>Local Watchlist</span><button class="stock-watchlist__create"><i
+        <div class="stock-watchlist__header"><span>Local Watchlist</span><button class="stock-watchlist__create-btn"><i
                     class="fas fa-plus"></i></button></div>
+        <!-- <div class="stock-watchlist__list-selector">
+            <select class="stock-watchlist__dropdown" name="cars" id="cars">
+                <option value="volvo">Big Tech</option>
+                <option value="saab">Value</option>
+                <option value="opel">High Growth</option>
+                <option value="audi">Day Trade</option>
+            </select>
+        </div> -->
 
         <div class="stock-watchlist__list">
             <div class="list-item">

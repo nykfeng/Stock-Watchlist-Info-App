@@ -1,12 +1,12 @@
-import WatchListStock from "./WatchListStock.js";
+import WatchListStock from "./WatchlistStock.js";
 import BrowserLocalStorage from "./BrowserLocalStorage.js";
 
 export default class WatchList {
   #listName;
   #stockOnList;
-  constructor(listName, watchListStocks) {
-    this.#listName = latestPrice;
-    this.#stockOnList.push(watchListStocks);
+  constructor(listName, watchListStocks = null) {
+    this.#listName = listName;
+    this.#stockOnList = watchListStocks;
   }
 
   get listName() {
@@ -18,5 +18,9 @@ export default class WatchList {
 
   deleteListStock(stock) {
     this.#stockOnList.indexOf(); // TODO
+  }
+
+  addStockToList(stock) {
+    this.#stockOnList.push(stock);
   }
 }
