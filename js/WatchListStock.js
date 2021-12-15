@@ -1,11 +1,13 @@
 import Stock from "./Stock.js";
 
-export default class StockWatchList extends Stock {
+export default class WatchListStock extends Stock {
   #price;
   #changePercent;
-  constructor(ticker, latestPrice, changePct) {
+  #volume;
+  constructor(ticker, latestPrice, changePct, volume) {
     super(ticker);
     this.#price = latestPrice;
     this.#changePercent = changePct;
+    this.#volume = volume;
   }
 }

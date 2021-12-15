@@ -1,6 +1,6 @@
 :root {
   font-size: 62.5%;
-  font-family: "Nunito", sans-serif;
+  font-family: "Roboto", sans-serif;
 
   --primary-dark-color: #191a19;
   --secondary-dark-color: #2e4c6d;
@@ -24,6 +24,19 @@ body {
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: 1fr auto;
   max-height: 100vh;
+  overflow: hidden;
+}
+
+/*
+Sharing styles ----------------------
+*/
+.stock-watchlist__header,
+.recently-viewed__header {
+  background-color: var(--secondary-dark-color);
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
 }
 
 /* 
@@ -51,6 +64,14 @@ Side bar watchlist section ------------------
 .watchlist-sidebar {
   height: 100vh;
   background-color: var(--primary-gray-color);
+}
+
+.stock-watchlist__create {
+  font-size: 2.5rem;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  color: #fff;
 }
 
 .list-item {

@@ -1,6 +1,6 @@
 import Stock from "./Stock.js";
 
-export default class StockRecentlyViewedList extends Stock {
+export default class RecentlyViewedListStock extends Stock {
   #lastViewOn;
   #price;
   #changePercent;

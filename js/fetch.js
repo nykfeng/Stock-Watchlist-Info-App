@@ -1,16 +1,27 @@
-const apiKey = x;
+const apiKey = "&apikey=WUJ9OTC4D6VO5XPG"; // Free API keys, very limited number of calls per minute
+const twelveDataApiKey = "&apikey=8db7ea1de8034d9e96307414b66d5346"; // Free API keys, very limited number of calls per minute
+const twelveDataUrl = "https://api.twelvedata.com/quote?symbol=";
 
-const stockInfo = async function (stock) {
+const stockInfoAlphaVantage = async function (stock) {
+  const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock.ticker}${apiKey}`;
   try {
-    const res = await fetch(
-      `https://cloud.iexapis.com/stable/stock/${stock.ticker}/quote?token=pk_b8445edb92244ad88a3de425568b1d07`
-    );
+    const res = await fetch(url);
     const data = await res.json();
-    return data;
+    return data["Global Quote"];
   } catch (err) {
-    console.log(`${err.name} while fetching ${stock.ticker}`);
-    fetchStockInfoError(stock);
+    console.log(`${err} while fetching ${stock.ticker}`);
   }
 };
 
-export { stockInfo };
+const stockQuoteTwelveData = async function (stock) {
+  const url = `${twelveDataUrl}${stock.ticker}${twelveDataApiKey}`;
+  try {
+    const res = await axios.get(url);
+    console.log(res.data);
+    return res.data;
+  } catch (e) {
+    console.log("Error!", e);
+  }
+};
+
+export default { stockInfoAlphaVantage, stockQuoteTwelveData };

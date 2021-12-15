@@ -11,13 +11,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;700;900&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;700;900&family=Roboto:ital,wght@0,700;1,300;1,900&display=swap"
+        rel="stylesheet">
 
+    <!-- My own style sheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/search-bar.css">
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js" type="module" defer></script>
     <script src="js/Stock.js" type="module"></script>
-    <script src="js/StockWatchList.js" type="module"></script>
-    <script src="js/StockRecentlyViewedList.js" type="module"></script>
+    <script src="js/WatchListStock.js" type="module"></script>
+    <script src="js/RecentlyViewedListStock.js" type="module"></script>
     <script src="https://kit.fontawesome.com/2155740522.js" crossorigin="anonymous"></script>
     <title>Stock Watchlist</title>
 </head>
@@ -28,48 +37,40 @@
 
     </header>
     <aside class="watchlist-sidebar">
+        <div class="stock-watchlist__header"><span>Local Watchlist</span><button class="stock-watchlist__create"><i
+                    class="fas fa-plus"></i></button></div>
+
         <div class="stock-watchlist__list">
             <div class="list-item">
-                <span class="stock-watchlist--stock-ticker">AAPL</span>
-                <span class="stock-watchlist--latest-price"></span>
-                <span class="stock-watchlist--latest-changePercent"></span>
-                <span class="stock-watchlist--volume"></span>
+                <span class="stock-watchlist__ticker">AAPL</span>
+                <span class="stock-watchlist__price">169</span>
+                <span class="stock-watchlist__changePercent">2.9</span>
+                <span class="stock-watchlist__volume">45M</span>
             </div>
             <div class="list-item">
-                <span class="stock-watchlist--stock-ticker">NVDA</span>
-                <span class="stock-watchlist--latest-price"></span>
-                <span class="stock-watchlist--latest-changePercent"></span>
-                <span class="stock-watchlist--volume"></span>
+                <span class="stock-watchlist__ticker">NVDA</span>
+                <span class="stock-watchlist__price"></span>
+                <span class="stock-watchlist__changePercent"></span>
+                <span class="stock-watchlist__volume"></span>
             </div>
             <div class="list-item">
-                <span class="stock-watchlist--stock-ticker"></span>
-                <span class="stock-watchlist--latest-price"></span>
-                <span class="stock-watchlist--latest-changePercent"></span>
-                <span class="stock-watchlist--volume"></span>
+                <span class="stock-watchlist__ticker">AAPL</span>
+                <span class="stock-watchlist__price"></span>
+                <span class="stock-watchlist__changePercent"></span>
+                <span class="stock-watchlist__volume"></span>
             </div>
             <div class="list-item">
-                <span class="stock-watchlist--stock-ticker"></span>
-                <span class="stock-watchlist--latest-price"></span>
-                <span class="stock-watchlist--latest-changePercent"></span>
-                <span class="stock-watchlist--volume"></span>
+                <span class="stock-watchlist__ticker">AAPL</span>
+                <span class="stock-watchlist__price"></span>
+                <span class="stock-watchlist__changePercent"></span>
+                <span class="stock-watchlist__volume"></span>
             </div>
-            <div class="list-item">
-                <span class="stock-watchlist--stock-ticker"></span>
-                <span class="stock-watchlist--latest-price"></span>
-                <span class="stock-watchlist--latest-changePercent"></span>
-                <span class="stock-watchlist--volume"></span>
-            </div>
-            <div class="list-item">
-                <span class="stock-watchlist--stock-ticker"></span>
-                <span class="stock-watchlist--latest-price"></span>
-                <span class="stock-watchlist--latest-changePercent"></span>
-                <span class="stock-watchlist--volume"></span>
-            </div>
+
         </div>
     </aside>
     <section class="information-sec">
         <div class="search-bar"><input type="text" class="search-bar__input" aria-label="search"
-                placeholder="enter stock ticker ">
+                placeholder="Enter stock ticker ">
             <button class="search-bar__submit" aria-label="submit search"><i class="fas fa-search"></i></button>
         </div>
         <div class="add-to-list-button">
@@ -79,6 +80,7 @@
         <div class="search-result"></div>
     </section>
     <aside class="recently-viewed-sidebar">
+        <div class="recently-viewed__header">Recently Viewed Stocks</div>
         <div class="recently-viewed__list">
             <div class="list-item">
                 <span class="stock-watchlist--stock-ticker">AAPL</span>
