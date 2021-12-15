@@ -22,11 +22,13 @@
   position: relative;
   width: var(--size);
   height: var(--size);
-  transition: width 450ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  transition: width 450ms ease;
+  /* cubic-bezier(0.18, 0.89, 0.32, 1.28); */
   padding: 3px;
 }
 
 .search-bar__input {
+  font-size: 2rem;
   border: 0;
   padding: 0.25em 1em;
   flex-grow: 1;
