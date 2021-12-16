@@ -24,6 +24,7 @@
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script src="script.js" type="module" defer></script>
     <script src="js/control.js" type="module" defer></script>
     <script src="js/dialog.js" type="module" defer></script>
@@ -43,50 +44,29 @@
     <aside class="watchlist-sidebar">
         <div class="stock-watchlist__header"><span>Local Watchlist</span><button class="stock-watchlist__create-btn"><i
                     class="fas fa-plus"></i></button></div>
-        <!-- <div class="stock-watchlist__list-selector">
-            <select class="stock-watchlist__dropdown" name="cars" id="cars">
-                <option value="volvo">Big Tech</option>
-                <option value="saab">Value</option>
-                <option value="opel">High Growth</option>
-                <option value="audi">Day Trade</option>
-            </select>
-        </div> -->
+
 
         <div class="stock-watchlist__list">
-            <div class="list-item">
-                <span class="stock-watchlist__ticker">AAPL</span>
-                <span class="stock-watchlist__price">169</span>
-                <span class="stock-watchlist__changePercent">2.9</span>
-                <span class="stock-watchlist__volume">45M</span>
-            </div>
-            <div class="list-item">
-                <span class="stock-watchlist__ticker">NVDA</span>
-                <span class="stock-watchlist__price"></span>
-                <span class="stock-watchlist__changePercent"></span>
-                <span class="stock-watchlist__volume"></span>
-            </div>
-            <div class="list-item">
-                <span class="stock-watchlist__ticker">AAPL</span>
-                <span class="stock-watchlist__price"></span>
-                <span class="stock-watchlist__changePercent"></span>
-                <span class="stock-watchlist__volume"></span>
-            </div>
-            <div class="list-item">
-                <span class="stock-watchlist__ticker">AAPL</span>
-                <span class="stock-watchlist__price"></span>
-                <span class="stock-watchlist__changePercent"></span>
-                <span class="stock-watchlist__volume"></span>
-            </div>
+
 
         </div>
     </aside>
     <section class="information-sec">
-        <div class="search-bar"><input type="text" class="search-bar__input" aria-label="search"
-                placeholder="Enter stock ticker ">
-            <button class="search-bar__submit" aria-label="submit search"><i class="fas fa-search"></i></button>
+        <div class="information-sec-header">
+            <div class="search-bar"><input type="text" class="search-bar__input" aria-label="search"
+                    placeholder="Enter stock ticker ">
+                <button class="search-bar__submit" aria-label="submit search"><i class="fas fa-search"></i></button>
+
+            </div>
+            <div class="add-to-list__button">
+                <div class="add-to-list__text">Add to a watchlist</div>
+                <button class="add-to-list__submit"><i class="far fa-plus-square"></i></button>
+            </div>
         </div>
-        <div class="add-to-list-button">
-            <button class="add-to-list__submit"><i class="far fa-plus-square"></i></button>
+
+
+        <div class="stock-chart">
+
         </div>
 
         <div class="search-result"></div>

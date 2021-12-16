@@ -46,19 +46,25 @@ BrowserLocalStorage.deleteStockFromWatchlist(
 
 const localWatchlists = [];
 
-const AAPL = new Stock("AAPL", 170, 1.5, 5562323);
-const NVDA = new Stock("NVDA", 309, 2.05, 125641613);
-const watchlistStocks = new WatchListStock(AAPL);
-watchlistStocks.add(NVDA);
+// const AAPL = new Stock("AAPL", 170, 1.5, 5562323);
+// const NVDA = new Stock("NVDA", 309, 2.05, 125641613);
+// const watchlistStocks = new WatchListStock(AAPL);
+// watchlistStocks.add(NVDA);
 
-console.log(watchlistStocks);
+// console.log(watchlistStocks);
 
 const init = function () {
   BrowserLocalStorage.getAllWatchlists().forEach((list) => {
-    localWatchlists.push(new Watchlist(list, watchlistStocks.stockList));
+    const listOfStocks = BrowserLocalStorage.getAllStocksFromWatchlist(list);
+    localWatchlists.push(new Watchlist(list, listOfStocks));
   });
 };
 
 init();
 
 console.log(localWatchlists);
+console.log(localWatchlists[0].stockOnList);
+
+fetch.otherInfo().then((info) => {
+  console.log(info);
+});

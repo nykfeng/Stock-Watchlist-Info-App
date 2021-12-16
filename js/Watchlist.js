@@ -23,4 +23,8 @@ export default class WatchList {
   addStockToList(stock) {
     this.#stockOnList.push(stock);
   }
+
+  get stockOnList() {
+    return this.#stockOnList;
+  }
 }

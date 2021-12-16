@@ -88,7 +88,8 @@
   width: 110px;
 }
 
-.watchlist-input {
+.watchlist-input,
+.stock-input {
   width: 200px;
   height: 35px;
   font-size: 30px;
@@ -96,6 +97,7 @@
   border-radius: 5px;
 }
 
-.watchlist-input:focus {
+.watchlist-input:focus,
+.stock-input:focus {
   outline: none;
 }

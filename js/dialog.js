@@ -32,7 +32,29 @@ const removeDialogBox = function () {
   });
 };
 
+const addStockToWatchlistModal = function () {
+  const html = `
+      <div class="confirm_dialog-background">
+          <div class="confirm_dialog-box">
+            <div class="confirm_dialog-title">
+              <span>Add a stock to the list</span>
+            </div>
+            <div class="confirm_dialog-message">
+              <label>Which stock would you like to add?</label>
+              <input class="stock-input" type="text">
+            </div>
+            <div class="confirm_dialog_btn-box">
+              <button class="confirm_button--submit">Submit</button>
+              <button class="confirm_button--cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
+        `;
+  document.querySelector("body").insertAdjacentHTML("beforeend", html);
+};
+
 export default {
   addWatchlistModal,
   removeDialogBox,
+  addStockToWatchlistModal,
 };
