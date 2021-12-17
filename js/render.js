@@ -4,6 +4,13 @@ import utility from "./utility.js";
 import tradingView from "./tradingView.js";
 
 const watchlistDropdown = function () {
+  //First check if there is already a list, if so delete it
+  const stockDropDownEl = document.querySelector(
+    ".stock-watchlist__list-selector"
+  );
+  stockDropDownEl?.remove();
+
+  // Not we starting rendering the dropdown list from local storage
   const existingLists = BrowserLocalStorage.getAllWatchlists();
   const watchlistHeaderEl = document.querySelector(".stock-watchlist__header");
   const dropDownDiv = document.createElement("div");
@@ -17,8 +24,6 @@ const watchlistDropdown = function () {
     dropDownList.insertAdjacentHTML("beforeend", html);
   });
   watchlistHeaderEl.insertAdjacentElement("afterend", dropDownDiv);
-
-  //   watchlist();
 };
 
 const watchlist = function (list) {
@@ -61,7 +66,9 @@ const stockOnList = async function (stock) {
   const data = await fetch.stockQuoteTwelveData(stock);
   const plusMinus = parseFloat(data.percent_change);
   const html = `
-  <div class="list-item ${plusMinus < 0 ? "red-box-label" : "green-box-label"}">
+  <div class="list-item stock ${
+    plusMinus < 0 ? "red-box-label" : "green-box-label"
+  }">
     <span class="stock-watchlist__ticker">${stock.ticker}</span>
     <span class="stock-watchlist__price ${
       plusMinus < 0 ? "red-text" : "green-text"
@@ -126,7 +133,6 @@ const stockInformationFixed = function () {
 
 const stockInformationDynamic = async function (stockTicker) {
   const data = await fetch.otherInfoAlphaVantage({ ticker: stockTicker });
-  console.log(data);
   const companyName = document.querySelector(".company-name");
   const sector = document.querySelector(".sector");
   const country = document.querySelector(".country");
@@ -168,7 +174,7 @@ const historyElement = async function () {
     const plusMinus = data.close - stock.lastViewedPrice;
     const changePercent = (plusMinus / stock.lastViewedPrice) * 100;
     const html = `
-    <div class="list-item history-list-item">
+    <div class="list-item stock history-list-item">
     <span class="stock-watchlist--stock-ticker">${stock.ticker}</span>
     <span class="stock-watchlist--change-since ${
       plusMinus >= 0 ? "green-text" : "red-text"

@@ -17,7 +17,6 @@ const stockQuoteTwelveData = async function (stock) {
   const url = `${twelveDataUrl}${stock.ticker}${twelveDataApiKey}`;
   try {
     const res = await axios.get(url);
-    console.log(res.data);
     return res.data;
   } catch (e) {
     console.log("Error!", e);

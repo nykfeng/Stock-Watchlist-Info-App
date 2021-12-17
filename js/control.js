@@ -1,9 +1,6 @@
-import Stock from "./Stock.js";
 import render from "./render.js";
 import dialog from "./dialog.js";
 import fetch from "./fetch.js";
-import WatchList from "./Watchlist.js";
-import WatchListStock from "./WatchlistStock.js";
 import tradingView from "./tradingView.js";
 import BrowserLocalStorage from "./BrowserLocalStorage.js";
 import utility from "./utility.js";
@@ -12,12 +9,16 @@ const watchlistCreateBtn = document.querySelector(
   ".stock-watchlist__create-btn"
 );
 const watchlistEl = document.querySelector(".stock-watchlist__list");
-let currentStock;
+const historyListEl = document.querySelector(".recently-viewed__list");
+
+let currentStock = "AAPL";
+let currentList;
 
 render.watchlistDropdown();
 
 // This needs to be after it is rendered
 const dropDownEl = document.querySelector(".stock-watchlist__dropdown");
+currentList = dropDownEl.value;
 
 const removeCurrentWatchlistElements = function () {
   const watchlistEl = document.querySelector(".stock-watchlist__list");
@@ -26,11 +27,12 @@ const removeCurrentWatchlistElements = function () {
   }
 };
 
-// Render watchlist after page loaded. This needs to be above onLoad
-const makeFirstList = function () {
-  const listName = dropDownEl.value;
+// Render watchlist after page loaded.
+const makeAList = function (list = null) {
+  const listName = list || currentList;
   removeCurrentWatchlistElements();
   render.watchlist(listName);
+  addStockToWatchlist();
 };
 
 // Add stock to watchlist
@@ -57,17 +59,15 @@ const addStockToWatchlist = function () {
   });
 };
 
+// On page load, these should execute
 const onLoad = function () {
-  currentStock = "NVDA";
-  makeFirstList();
+  makeAList();
   render.stockChart(currentStock);
   tradingView.add(currentStock);
   render.stockInformationFixed();
   render.stockInformationDynamic(currentStock);
-  addStockToWatchlist();
+  render.historyElement();
 };
-
-onLoad();
 
 const addNewWatchlist = function () {
   dialog.addWatchlistModal();
@@ -78,8 +78,8 @@ const addNewWatchlist = function () {
   input.focus();
   btnSubmit.addEventListener("click", function () {
     if (input.value) {
-      console.log(input.value);
       createNewWatchlist(input.value);
+      render.watchlistDropdown();
     }
     document.querySelector(".confirm_dialog-background").remove();
   });
@@ -94,7 +94,7 @@ const createNewWatchlist = function (listName) {
 // If the dropdown menu ever changed, the list should follow
 dropDownEl.addEventListener("change", function (e) {
   let list = e.target.value;
-
+  currentList = list;
   // Remove stock elements from the list
   removeCurrentWatchlistElements();
   render.watchlist(list);
@@ -109,11 +109,7 @@ searchSubmitBtn.addEventListener("click", function () {
   searchInputEl.value = "";
   if (!inputValue) return;
   currentStock = inputValue;
-  makingHistoryData(currentStock);
-  render.historyElement();
-  render.stockChart(currentStock);
-  render.stockInformationFixed();
-  render.stockInformationDynamic(currentStock);
+  viewStockInfo(currentStock);
 });
 
 // Listen to add to a watchlist from main
@@ -134,7 +130,7 @@ addToWatchlistFromMainBtn.addEventListener("click", function () {
     );
     const list = popupDropDownEl.value;
     BrowserLocalStorage.addStockToWatchlist({ ticker: currentStock }, list);
-
+    makeAList(list);
     document.querySelector(".confirm_dialog-background").remove();
   });
 });
@@ -145,4 +141,52 @@ const makingHistoryData = async function (stockTicker) {
   const viewedDate = utility.getCurrentDate();
 
   BrowserLocalStorage.addHistory(stockTicker, viewedDate, viewedPrice);
+};
+
+watchlistEl.addEventListener("click", function (e) {
+  if (e.target.closest(".stock")) {
+    if (e.target.classList.contains("stock")) {
+      const targetEl = e.target;
+      currentStock = targetEl.querySelector(
+        ".stock-watchlist__ticker"
+      ).textContent;
+      viewStockInfo(currentStock);
+    } else {
+      const targetEl = e.target.parentElement;
+      currentStock = targetEl.querySelector(
+        ".stock-watchlist__ticker"
+      ).textContent;
+      viewStockInfo(currentStock);
+    }
+  }
+});
+
+historyListEl.addEventListener("click", function (e) {
+  if (e.target.closest(".stock")) {
+    if (e.target.classList.contains("stock")) {
+      const targetEl = e.target;
+      currentStock = targetEl.querySelector(
+        ".stock-watchlist--stock-ticker"
+      ).textContent;
+      viewStockInfo(currentStock);
+    } else {
+      const targetEl = e.target.parentElement;
+      currentStock = targetEl.querySelector(
+        ".stock-watchlist--stock-ticker"
+      ).textContent;
+      viewStockInfo(currentStock);
+    }
+  }
+});
+
+const viewStockInfo = function (currentStock) {
+  makingHistoryData(currentStock);
+  render.historyElement();
+  render.stockChart(currentStock);
+  render.stockInformationFixed();
+  render.stockInformationDynamic(currentStock);
+};
+
+export default {
+  onLoad,
 };

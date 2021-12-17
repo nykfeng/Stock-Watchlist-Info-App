@@ -1,4 +1,3 @@
-import WatchListStock from "./WatchlistStock.js";
 import BrowserLocalStorage from "./BrowserLocalStorage.js";
 
 export default class WatchList {
@@ -14,10 +13,6 @@ export default class WatchList {
   }
   set listName(name) {
     this.#listName = name;
-  }
-
-  deleteListStock(stock) {
-    this.#stockOnList.indexOf(); // TODO
   }
 
   addStockToList(stock) {
