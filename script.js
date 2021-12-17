@@ -64,7 +64,3 @@ init();
 
 console.log(localWatchlists);
 console.log(localWatchlists[0].stockOnList);
-
-fetch.otherInfo().then((info) => {
-  console.log(info);
-});

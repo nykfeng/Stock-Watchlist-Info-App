@@ -11,6 +11,7 @@ export default class BrowserLocalStorage {
     return watchlists;
   }
 
+  // ------------------------------ Stocks on watchlist -------------------------------
   static addStockToWatchlist(stockToAdd, list) {
     const stockList = BrowserLocalStorage.getAllStocksFromWatchlist(list);
     const existing = stockList.find(
@@ -45,6 +46,7 @@ export default class BrowserLocalStorage {
     localStorage.setItem(list, JSON.stringify(stockList));
   }
 
+  // ---------------------  Watchlist ------------------------------------
   static addWatchlist(list) {
     const watchlists = BrowserLocalStorage.getAllWatchlists();
     const existing = watchlists.find((watchlist) => watchlist === list);
@@ -72,5 +74,38 @@ export default class BrowserLocalStorage {
     });
 
     localStorage.setItem(`watchlists`, JSON.stringify(newWatchlists));
+  }
+
+  // ----------------------- History (recently viewed list) -----------------
+  static getStocksFromHistory() {
+    const stockHistoryList = JSON.parse(
+      localStorage.getItem(`Recently-Viewed-Stocks`) || "[]"
+    );
+
+    return stockHistoryList;
+  }
+
+  static addHistory(stockTicker, lastViewed, lastPrice) {
+    const stockList = BrowserLocalStorage.getStocksFromHistory();
+    const existing = stockList.find((stock) => stock.ticker === stockTicker);
+
+    if (!existing) {
+      stockList.push({
+        ticker: stockTicker,
+        lastViewedDate: lastViewed,
+        lastViewedPrice: lastPrice,
+      });
+    } else {
+      const index = stockList.findIndex(
+        (stock) => stock.ticker === stockTicker
+      );
+      stockList[index].lastViewedDate = lastViewed;
+      stockList[index].lastViewedPrice = lastPrice;
+    }
+    localStorage.setItem(`Recently-Viewed-Stocks`, JSON.stringify(stockList));
+  }
+
+  static clearHistory() {
+    localStorage.removeItem(`Recently-Viewed-Stocks`);
   }
 }

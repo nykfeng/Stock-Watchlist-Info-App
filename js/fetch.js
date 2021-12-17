@@ -24,8 +24,8 @@ const stockQuoteTwelveData = async function (stock) {
   }
 };
 
-const otherInfo = async function (stock) {
-  const url = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=${alphaAvantageApiKey}`;
+const otherInfoAlphaVantage = async function (stock) {
+  const url = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${stock.ticker}${alphaAvantageApiKey}`;
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -35,4 +35,8 @@ const otherInfo = async function (stock) {
   }
 };
 
-export default { stockInfoAlphaVantage, stockQuoteTwelveData, otherInfo };
+export default {
+  stockInfoAlphaVantage,
+  stockQuoteTwelveData,
+  otherInfoAlphaVantage,
+};

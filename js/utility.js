@@ -17,29 +17,17 @@ const calculateVolumeUnit = function (volume) {
   return vol;
 };
 
-const formatStockCardCompanyName = function (name) {
-  if (name.length > 24) name = name.substring(0, 23) + "...";
-  if (name.includes(" -")) return name.substring(0, name.indexOf("-"));
-  return name;
-};
-
-const formatStockExchangeName = function (name) {
-  if (name.toUpperCase().includes("NEW YORK STOCK EXCHANGE")) return "NYSE";
-  else if (name.length > 10) return "";
-  else return name;
-};
-
-const removeColorBox = function (boxElement) {
-  boxElement.classList.remove("red-price-box");
-  boxElement.classList.remove("green-price-box");
+const getCurrentDate = function () {
+  const date = new Date();
+  return `${(date.getMonth() + 1).toString().padStart(2, "0")}-${date
+    .getDate()
+    .toString()
+    .padStart(2, "0")}-${date.getFullYear()}`;
 };
 
 export default {
   formatNumber,
   cleanNumberFormat,
-  formatStockCardCompanyName,
+  getCurrentDate,
   calculateVolumeUnit,
-
-  formatStockExchangeName,
-  removeColorBox,
 };

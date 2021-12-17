@@ -1,3 +1,5 @@
+import BrowserLocalStorage from "./BrowserLocalStorage.js";
+
 const addWatchlistModal = function () {
   const html = `
     <div class="confirm_dialog-background">
@@ -53,8 +55,39 @@ const addStockToWatchlistModal = function () {
   document.querySelector("body").insertAdjacentHTML("beforeend", html);
 };
 
+const addStockToWatchlistFromMainModal = function (stockTicker) {
+  const existingLists = BrowserLocalStorage.getAllWatchlists();
+  let listHtml = "";
+
+  existingLists.forEach((list) => {
+    listHtml += `<option value="${list}">${list}</option>`;
+  });
+
+  const html = `
+      <div class="confirm_dialog-background">
+          <div class="confirm_dialog-box">
+            <div class="confirm_dialog-title">
+              <span>Add ${stockTicker} to which watchlist?</span>
+            </div>
+            <div class="confirm_dialog-message">
+
+            <select class="stock-watchlist__dropdown popup-watchlist__dropdown">
+            ${listHtml}
+            </select>
+            </div>
+            <div class="confirm_dialog_btn-box">
+              <button class="confirm_button--submit">Submit</button>
+              <button class="confirm_button--cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
+        `;
+  document.querySelector("body").insertAdjacentHTML("beforeend", html);
+};
+
 export default {
   addWatchlistModal,
   removeDialogBox,
   addStockToWatchlistModal,
+  addStockToWatchlistFromMainModal,
 };
